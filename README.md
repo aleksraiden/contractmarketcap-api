@@ -454,3 +454,122 @@ Note. Only active (connecting to our platform) exchanges or CFD brokers are pres
 
 Example: https://sandbox.contractmarketcap.com/v1/public/exchanges
 
+
+
+#### /v1/public/exchange/<excode>
+
+*Fetch global info about specify exchange*
+
+```javascript
+{
+    "data": {
+        excode: "bitmex",
+        info: {
+            _id: 4,
+            excode: "bitmex",
+            exname: "BitMEX",
+            exsite: "https://www.bitmex.com",
+            exjurisdiction: "Seychelles",
+            exlegalentity: "",
+            exdesc: "",
+            exlogo: "https://contractmarketcap.com/images/bitmex_exchange.png",
+            extags: ""
+        },
+        oi24h: 1371416433,
+        vol24h: 2825731416,
+        cur: "USD",
+        updated: 1579881302,
+        opendata: {		//Base metrics from open day, week, month and year
+       		now: {
+                vol24h: 2825731416,
+                oi24h: 1371416433,
+                updated: 1579882203
+            },
+            day: {
+                vol24h: 3237955191,
+                oi24h: 1369357234,
+                updated: 1579824003
+            },
+            week: {
+                vol24h: 4291953892,
+                oi24h: 1324226567,
+                updated: 1579478403
+            },
+            month: {
+                vol24h: 1285347354,
+                oi24h: 1065915172,
+                updated: 1577836802
+            },
+            year: {
+                vol24h: 1285347354,
+                oi24h: 1065915172,
+                updated: 1577836802
+            }
+        },
+        source: "contractmarketcap"
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex
+
+
+
+#### /v1/public/exchange/<excode>/info
+
+*Fetch global info about specify exchange*
+
+**Note**: Now are identical as a **/v1/public/exchange/<excode>**
+
+Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/info
+
+
+
+#### /v1/public/exchange/<excode>/contracts
+
+*Fetch all contract info  from specify exchange*
+
+```javascript
+{
+	"data": {
+        31: {
+            id: 31,						//Contract ID
+            excode: "bitmex",			//Exchange code
+            ccode: "XRPU19",			//Contract symbol, not-unique at all cases
+            ctype: "FUTURES",			//Type of contract (Futures, Swap, CFD, ETP etc.)
+            cbase_asset: "COIN",		//Type of underlaying asset (Coin, Toke, Index)
+            expiration: "27/Sep/2019",	//Date of expiration, if exists
+            settlement_type: "CASH",	//Type of settlement (Cash or Delivery)
+            nominated_type: "VANILLA",	//Type of nomination (Vanilla, Quanto, Inverse)
+            index_name: ".BXRPXBT30M",	//Underlaying index code
+            base: "XRP",				//Base asset code
+            nominated: "BTC",			//Currency code
+            contract_asset: "XRP",		//Lot asset
+            contract_size: 1,			//Lot size (minimal contract size, not a minimal traded size)
+            price_tick: 1e-8,			//Minimal price tick
+            tradable: 0,				//Trading status, 0 - non-tradable, 1 - active
+            updated: 1569584522			//Unix timestamp 
+        },
+        32: {
+            id: 32,
+            excode: "bitmex",
+            ccode: "BCHU19",
+            ctype: "FUTURES",
+            cbase_asset: "COIN",
+            expiration: "27/Sep/2019",
+            settlement_type: "CASH",
+            nominated_type: "VANILLA",
+            index_name: ".BBCHXBT30M",
+            base: "BCH",
+            nominated: "BTC",
+            contract_asset: "BCH",
+            contract_size: 1,
+            price_tick: 0.00001,
+            tradable: 0,
+            updated_at: "2019-09-27 11:42:02"
+        }
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/contracts
