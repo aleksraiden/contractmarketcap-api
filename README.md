@@ -573,3 +573,101 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/info
 ```
 
 Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/contracts
+
+
+
+#### /v1/public/exchange/<excode>/indices
+
+*Fetch exchange indices info*
+
+**Note**: Now are identical as a **/v1/public/<excode>/indices**
+
+Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/indices
+
+
+
+#### /v1/public/exchange/<excode>/stats
+
+*Fetch stats info about specify exchange*
+
+```javascript
+{
+    "data": {
+        //Base exchange metrics from open day, week, month and year
+        now: {
+            vol24h: 2825731416,
+            oi24h: 1371416433,
+            updated: 1579882203
+        },
+        day: {
+            vol24h: 3237955191,
+            oi24h: 1369357234,
+            updated: 1579824003
+        },
+        week: {
+            vol24h: 4291953892,
+            oi24h: 1324226567,
+            updated: 1579478403
+        },
+        month: {
+            vol24h: 1285347354,
+            oi24h: 1065915172,
+            updated: 1577836802
+        },
+        year: {
+            vol24h: 1285347354,
+            oi24h: 1065915172,
+            updated: 1577836802
+        }
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/stats
+
+
+
+#### /v1/public/exchange/<excode>/history
+
+*Fetch stats history (with 5 min interval) info about specify exchange*
+
+```javascript
+{
+    "data": [
+        {
+            vol24h: 2905612398,
+            oi24h: 1372123527,
+            updated: 1579886402
+        },
+        {
+            vol24h: 2904404168,
+            oi24h: 1371779791,
+            updated: 1579886102
+        },
+        {
+            vol24h: 2903491181,
+            oi24h: 1372187444,
+            updated: 1579885802
+        },
+        {
+            vol24h: 2900333483,
+            oi24h: 1371022486,
+            updated: 1579885503
+        }
+    ]
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/history
+
+
+
+#### /v1/public/exchange/<excode>/reports
+
+*Coming soon*
+
+
+
+#### /v1/public/exchange/<excode>/news
+
+*Coming soon*
