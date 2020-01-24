@@ -276,7 +276,7 @@ Example: https://sandbox.contractmarketcap.com/v1/public/indices/symbols
             info: null,						// Reserved for future. Ignore it now
             contracts: [					// List of Contracts, associate with index
                 {
-                	id: 1036,			//Unique id of Contract
+                	id: 1036,		//Unique id of Contract
                 	ccode: "ETHUSDT"	//Contract code, in some cases can be non-unique
                 }
             ],
@@ -396,3 +396,61 @@ At now, returns up to 500 latest values. K-lines and full-range historical value
 ```
 
 Example: https://sandbox.contractmarketcap.com/v1/public/index/FTX:BTCUSDINDEX/history
+
+
+
+## Exchanges
+
+Note. Only active (connecting to our platform) exchanges or CFD brokers are presents. If you need a full list of known derivative-related project, contact us: raiden@contractmarketcap.com 
+
+
+
+#### /v1/public/exchanges
+
+*Fetch global info about active (connected) exchanges*
+
+```javascript
+{
+	"data" : {
+        deribit: {
+            excode: "deribit",	//Unique exchange code
+            info: {
+                excode: "deribit",
+                exname: "Deribit",	//Name
+                exsite: "https://www.deribit.com",	//Official web site
+                exjurisdiction: "Netherlands",		//Main jurisdiction
+                exlegalentity: "",	//Official company entity. e.g. Company Name
+                exdesc: "<p>Deribit is live since June 2016 after several years of development. John Jansen, the original founder, teamed up with Marius Jansen and Sebastian Smyczýnski. Deribit started as a Bitcoin Futures and Options trading platform going live in the summer of 2016. <p>Deribit has been created as an answer to those in search of a professional fully dedicated cryptocurrencies futures and options trading platform. A service that can create a fully liquid marketplace with the same standards as a traditional derivatives market. <p><b>Technology</b> <p>In order to secure normal exchange standards, the system has been in development for more than 2 years to assure extreme performance before going live. Entire framework of the platform has been developed to assure the ability to handle very large numbers of requests with ultra low latency (<1 ms). There is simply no other platform available that can guarantee similar performance. We developed our own matching engine from scratch and all of our technology is proprietary. We believe in Bitcoin and in the future of cryptocurrencies in general. We expect millions of traders will be trading cryptocurrencies at any given moment in time soon, and our platform is built with the potential to eventually serve those millions of users at the same time with real time low latency data.",
+                exlogo: "https://contractmarketcap.com/images/deribit_exchange.png",
+                extags: [ ]		//Tags, coming soon
+            },
+            oi24h: 239966019,	//24h total Open Interest, last reported, USD
+            vol24h: 229698900,	//24h total trading volume (last reported), USD
+            cur: "USD",			//Currency at oi24h and vol24h fields
+            updated: 1579880103,
+            source: "contractmarketcap"
+        },
+        kumex: {
+        	excode: "kumex",
+       		info: {
+                excode: "kumex",
+                exname: "KuMEX",
+                exsite: "https://www.kumex.com/",
+                exjurisdiction: "Seychelles",
+                exlegalentity: "",
+                exdesc: "",
+                exlogo: "https://contractmarketcap.com/images/kumex_exchange.png",
+                extags: [ ]
+            },
+            oi24h: 4404358,
+            vol24h: 109511607,
+            cur: "USD",
+            updated: 1579880103,
+            source: "contractmarketcap"
+        }
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/exchanges
+
