@@ -50,8 +50,8 @@ Universal responce format (JSON):
 *Query information on system time*
 
 ```javascript
-data: {
-	time: 1579868312476502	//System time, with microseconds (1/1000000 of sec)
+{
+	"time": 1579868312476502	//System time, with microseconds (1/1000000 of sec)
 }
 ```
 
@@ -65,9 +65,9 @@ Example: https://sandbox.contractmarketcap.com/v1/public/system/time
 
 ```javascript
 {
-	"status" : true|false, //
-    "error"  : null|"Invalid backend connection" //or any string with error
-    "data"	 : {} //no data block for this request
+	"status" : true|false,
+	"error"  : null|"Invalid backend connection" //or any string with error
+	"data"	 : {} //no data block for this request
 }
 ```
 
