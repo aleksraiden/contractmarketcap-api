@@ -825,35 +825,86 @@ Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
 
 ## Market data
 
-Latest data for all contracts. Note, 5-min data updated currently. Real-time data streaming will be released at Q2'2020. Please, contact us if you need this: raiden@contractmarketcap.com
+Latest data for all contracts. Note, 5-min data updated currently. Real-time data streaming will be released at Q2'2020. 
+
+**Note**: Some metrics available only for Enterprise plan: Open Interest and Volumes in contracts, currency, latest amount, Spread, raw price without rounding, 24h, 7day, 30day changes etc. 
+
+Contact us for more info: raiden@contractmarketcap.com 
 
 
 
 #### /v1/public/marketdata/summary
 
-*All latest quotes by whole market*. 
+*All latest quotes by whole market*. Only traded now contracts are displayed.
+
+Note: Most of fields identical to /v1/public/contracts endpoint. 
 
 ```javascript
 {
     "data" : {
-        
+        1: {
+            id: 1,
+            excode: "ftx",
+            ccode: "ALGO-PERP",
+            contract_type: "FUTURES",
+            asset_type: "COIN",
+            expiration_date: "",
+            nominated_type: "VANILLA",
+            base: "ALGO",
+            nominated: "USD",
+            vol24h_base: 526456,			//24h trading volume (in base asset)
+            vol24h_usd: 127122.36,			//24h volume in USD, internal calculated
+            last_price: 0.2423,				//Last trade price
+            best_bid: 0.2408,				//Best bid price
+            best_ask: 0.2414,				//Best ask price
+            open_price: 0.2420,				//Open price (from 00:00 UTC)
+            oi24h_base: 3389647,			//Open Interest, in base asset
+            oi24h_usd: 818491.8,			//Open Interest in USD, internal calculated
+            fund_rate: 0					//Current funding rate, if available
+        },
+        3: {
+            id: 3,
+            excode: "ftx",
+            ccode: "ALT-PERP",
+            contract_type: "FUTURES",
+            asset_type: "INDEX",
+            expiration_date: "",
+            nominated_type: "VANILLA",
+            base: "ALT",
+            nominated: "USD",
+            vol24h_base: 9100.963,
+            vol24h_usd: 3573847.81,
+            last_price: 634.45,
+            best_bid: 636.65,
+            best_ask: 637,
+            open_price: 634.01, 
+            oi24h_base: 2219.149,
+            oi24h_usd: 871435.34,
+            fund_rate: 0
+        }
     }
 }
 ```
-
-
-
-
 
 Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary
 
 
 
-#### /v1/public/marketdata/summary/from/<period>
+#### /v1/public/marketdata/summary/<period>
 
-*Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
+*All latest quotes by whole market*. Only traded at specify period are returned. 
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+Period: **daily** (open day data, 00:00 by GMT), **weekly** and **monthly**.
+
+**Note**: All of fields identical to /v1/public/contracts endpoint.  
+
+**Note**: For any un-applicable period returns latest data
+
+Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary/daily
+
+Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary/weekly
+
+Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary/monthly
 
 
 
@@ -861,7 +912,7 @@ Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
 
 *Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+Example: https://sandbox.contractmarketcap.com/v1/marketdata/exchange/bbx
 
 
 
@@ -869,7 +920,17 @@ Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
 
 *Latest quotes from one contract, specify by ID*. Data fields are identical to /marketdata/summary endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contract/1797
+
+
+
+#### /v1/public/marketdata/contract/<contractid>/history/eod
+
+*End-of-day history market snapshot from one contract, specify by ID*. 
+
+Data fields are identical to /marketdata/summary endpoint. Available for last 7 day.
+
+Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contract/1797/history/eod
 
 
 
@@ -877,5 +938,74 @@ Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
 
 *Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+**Note**: Contract IDs set by param ?cid=1,2,3. Max: 100 ids per request.
 
+**Note**: You may request latest price for any contract, traded or non-tradable now.
+
+Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contracts?ids=1797,1791,1792
+
+
+
+## Global market
+
+**Note**: Metrics, provided by [CoinMarketCap](https://contractmarketcap.com) available only for non-commercial, individual use, as indicative metric.
+
+
+
+#### /v1/public/global/summary
+
+*Global metrics by whole market*. 
+
+**Note**: some of global metrics provided by third-party contributors - CoinMarketCap and other.
+
+```javascript
+{
+    "data" : {
+        open_interest: 6754109440.38,			//Open Interest, in USD
+        altcoin_open_interest: 1803773013.62,	//Open Interest, in USD (exclude BTC)
+        dm_vol24h: 31588066765.25,				//24h trading volume, in USD
+        altcoin_dm_vol24h: 13460356306.72,		//24h trading volume, in USD (exclude BTC)
+        btc_dm_oi_dominance: 73.29,		//% of BTC domination in Open Interest
+        btc_dm_vol_dominance: 57.39,	//% of BTC domination in trading volume
+        btc_spot_dominance: 65.66,		//% of BTC domination at Spot (via CoinMarketCap)
+        dm_products: 604,				//Count of traded contracts
+        dm_perpetuals: 381,				//Count of perpetual contracts
+        dm_swaps: 138,					//Count of swap contracts
+        dm_futures: 453,				//Count of Futures
+        dm_quanto: 37,					//Count of Quanto products (Futures, Swaps)
+        dm_inverse: 68,					//Inverse nominated products (Futures, Swaps)
+        btc_price: 8752.08,				//Latest BTC price, spot (via CoinMarketCap)
+        spot_vol24h: 98452373185.82,	//Spot trading vol, 24h (via CoinMarketCap)
+        spot_altcoin_vol24h: 72785633607.05, //Spot trading, exclude BTC (via CoinMarketCap)
+        updated_at: 1580137802			//UTC timestamp
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/global/summary
+
+
+
+#### /v1/public/global/summary/<assetsymbol> 
+
+*Global metrics by symbol derivative market*. 
+
+**Note**: some of global metrics provided by third-party contributors - CoinMarketCap and other.
+
+```javascript
+{
+    "data" : {
+        symbol: "BTC",						//base symbol
+        vol24h_usd: 18505314096.25,			//24h trading volume, derivatives, in USD
+        vol24h_base: 2121219.53,			//24h trading volume, derivatives, in asset
+        oi24h_usd: 4969451177.08,			//Open Interest, total, in USD
+        oi24h_base: 1284342199.27,			//Open Interest, total, in asset
+        spot_mcap_usd: 159529029869.83,		//Spot, market cap, USD (via CoinMarketCap)
+        spot_vol24h_usd: 25869515532.82,	//Spot, trade vol, USD (via CoinMarketCap)
+        spot_price_usd: 8772.69410837		//Spot, last price USD (via CoinMarketCap)
+        updated_at: 1580137802				//UTC timestamp
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/global/summary/BTC
