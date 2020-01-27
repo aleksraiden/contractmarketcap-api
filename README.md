@@ -660,6 +660,8 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/stats
 
 Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/history
 
+**Coming soon**: *at a future release, we are added <excode>/kline endpoint with UDF (TradingView) data for charts.*
+
 
 
 #### /v1/public/exchange/<excode>/reports
@@ -671,3 +673,209 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/history
 #### /v1/public/exchange/<excode>/news
 
 *Coming soon*
+
+
+
+
+
+## Contracts
+
+
+
+#### /v1/public/contracts
+
+*All contracts specifications*
+
+**Note**: Endpoint returns ALL of registered contracts, traded and expired. A lot of data (500+ Kb)!  If you need only active contracts, please, use /contracts/traded. 
+
+```javascript
+{
+    "data": {
+        1: {
+            id: 1,						//unique ID of this contract
+            excode: "ftx",				//Exchange code
+            ccode: "ALGO-PERP",			//Symbol or exchange name of contract
+            origital_id: "",			//If provide, internal exchange id of contract
+            contract_type: "FUTURES",	//Type of contract (FUTURES, SWAP, CFD, ETP)
+            asset_type: "COIN",			//Type of base asset: COIN, TOKEN, INDEX etc.
+            expiration_date: "",		//Date of contract expiration (empty for perpetual)
+            settlement_type: "CASH",	//Type of settlement (CASH, DELIVERY)
+            nominated_type: "VANILLA",	//Type of nominal (VANILLA, INVERSE, QUANTO)
+            index_name: "FTX ALGO Index", //Underlaying index name
+            base: "ALGO",				//Base asset symbol
+            nominated: "USD",			//Nominal currency symbol
+            contract_asset: "ALGO",		//Asset of contract size
+            contract_size: 1,			
+            price_tick: 0.0001,			//Minimal price tick (in nominal currency)
+            tradable: 1,				//1 - contract traded (live), 0 - non-traded
+            symbol: ""					//Reserve, symbol for replace id in future
+        },
+        2: {
+            id: 2,
+            excode: "ftx",
+            ccode: "ALGO-0927",
+            origital_id: "",
+            contract_type: "FUTURES",
+            asset_type: "COIN",
+            expiration_date: "27/Sep/2019",	//Date of contract expiration
+            settlement_type: "CASH",
+            nominated_type: "VANILLA",
+            index_name: "FTX ALGO Index",
+            base: "ALGO",
+            nominated: "USD",
+            contract_asset: "ALGO",
+            contract_size: 1,
+            price_tick: 0.0001,
+            tradable: 0,
+            symbol: ""
+        }
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contracts
+
+
+
+#### /v1/public/contracts/traded
+
+*All currently traded contracts*. All fields identical to /contracts endpoint
+
+```javascript
+{
+    "data" : {
+        1: {
+            id: 1,						//unique ID of this contract
+            excode: "ftx",				//Exchange code
+            ccode: "ALGO-PERP",			//Symbol or exchange name of contract
+            origital_id: "",			//If provide, internal exchange id of contract
+            contract_type: "FUTURES",	//Type of contract (FUTURES, SWAP, CFD, ETP)
+            asset_type: "COIN",			//Type of base asset: COIN, TOKEN, INDEX etc.
+            expiration_date: "",		//Date of contract expiration (empty for perpetual or d/M/Y, eg. 21/Mar/2020)
+            settlement_type: "CASH",	//Type of settlement (CASH, DELIVERY)
+            nominated_type: "VANILLA",	//Type of nominal (VANILLA, INVERSE, QUANTO)
+            index_name: "FTX ALGO Index", //Underlaying index name
+            base: "ALGO",				//Base asset symbol
+            nominated: "USD",			//Nominal currency symbol
+            contract_asset: "ALGO",		//Asset of contract size
+            contract_size: 1,			
+            price_tick: 0.0001,			//Minimal price tick (in nominal currency)
+            tradable: 1,				//1 - contract traded (live), 0 - non-traded
+            symbol: ""					//Reserve, symbol for replace id in future
+        }
+    }
+}
+```
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contracts/traded
+
+
+
+#### /v1/public/contracts/expired
+
+*All currently expired contracts*. Data fields are identical to **/contracts** endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contracts/expired 
+
+
+
+#### /v1/public/contracts/perpetual
+
+*All perpetual (without expiration date) contracts*. Data fields are identical to **/contracts** endpoint
+
+Note: Not of all perpetual contracts are traded! 
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contracts/perpetual
+
+
+
+#### /v1/public/contracts/tod
+
+*All contract, expired TODAY*. Data fields are identical to **/contracts** endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contracts/tod
+
+
+
+#### /v1/public/contracts/tom
+
+*All contract, expired TOMORROW*. Data fields are identical to **/contracts** endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contracts/tom
+
+
+
+#### /v1/public/contracts/<excode>
+
+*All contract by specify exchange*. Data fields are identical to **/contracts** endpoint
+
+**Note**: Returns all contracts, not only traded now. 
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contracts/huobidm
+
+
+
+#### /v1/public/contract/<id>
+
+*Fetch info about one contract*. Data fields are identical to **/contracts** endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+
+
+
+## Market data
+
+Latest data for all contracts. Note, 5-min data updated currently. Real-time data streaming will be released at Q2'2020. Please, contact us if you need this: raiden@contractmarketcap.com
+
+
+
+#### /v1/public/marketdata/summary
+
+*All latest quotes by whole market*. 
+
+```javascript
+{
+    "data" : {
+        
+    }
+}
+```
+
+
+
+
+
+Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary
+
+
+
+#### /v1/public/marketdata/summary/from/<period>
+
+*Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+
+
+
+#### /v1/public/marketdata/exchange/<excode>
+
+*Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+
+
+
+#### /v1/public/marketdata/contract/<contractid>
+
+*Latest quotes from one contract, specify by ID*. Data fields are identical to /marketdata/summary endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+
+
+
+#### /v1/public/marketdata/contracts
+
+*Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
+
+Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+
