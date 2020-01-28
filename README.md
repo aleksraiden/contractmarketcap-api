@@ -16,21 +16,22 @@ Official API docs and examples for ContractMarketCap site. Visit to: https://con
 
 ## Auth
 
-- Any API plan uses Auth token for each request
+- Any API plan uses Auth token for each request (except /public/ URLs)
 - Auth token has limited timelife - 1Y (one year or 365 * 24 * 3600 seconds) from generation. Contact us, if you need special offer.
 - Auth token usages: 
-  - cookie (not recomended)
+  - cookie (not recommended)
   - http header with name X-CMC-KEY (best practice) 
-  - http request param, named X-CMC-KEY
-- Get your key (or revoke previos) at client area (https://clients.contractmarketcap.com, *coming soon*) or request vie e-mail: apikey@contractmarketcap.com 
+  - http request param, named "**x-cmc-key**"
+- Get your key (or revoke previous) at client area (https://clients.contractmarketcap.com, *coming soon*) or request vie e-mail: apikey@contractmarketcap.com 
 - At TEST Auth token can be any non-empty string, e.g. "test" or "<your_company_domain>"
+- **Endpoints, started with /v1/public/ - are FREE without any Auth key**
 - **Keep your key private and safe**!  
 
 
 
 ## REST-API
 
-Universal responce format (JSON):
+Universal response format (JSON):
 
 ```javascript
 {
@@ -77,7 +78,7 @@ Example: https://sandbox.contractmarketcap.com/v1/public/system/status
 
 #### /v1/public/system/limits
 
-**Coming soon**. *Query information on current rate limits ond/or API plan limits*
+**Coming soon**. *Query information on current rate limits and/or API plan limits*
 
 ```javascript
 {
@@ -97,7 +98,7 @@ Fiat currency supported: USD, ZAR, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, 
 
 If you are interest other currency - feel free co contact us: raiden@contractmarketcap.com 
 
-#### /v1/public/fx
+#### /v1/data/fx
 
 *Fetch Fx quotes, used for internal calculations.*
 
@@ -142,11 +143,11 @@ Supports fiat currency, such as EUR, RUB, CNY and crypto, e.g. BTC, ETH.
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/fx 
+Example: https://sandbox.contractmarketcap.com/v1/data/fx 
 
 
 
-#### /v1/public/fx/<SYMBOL>
+#### /v1/data/fx/<SYMBOL>
 
 *Fetch Fx quote for individual currency symbol.*
 
@@ -171,17 +172,17 @@ Supports fiat currency, such as EUR, RUB, CNY and crypto, e.g. BTC, ETH.
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/fx/ZAR 
+Example: https://sandbox.contractmarketcap.com/v1/data/fx/ZAR 
 
 
 
 ## Indices
 
-**Note**: This section of endpoints are under active development and will be extend to more information about index (constitution, historacal data etc.)
+**Note**: This section of endpoints are under active development and will be extend to more information about index (constitution, historical data etc.)
 
 
 
-#### /v1/public/indices
+#### /v1/data/indices
 
 *Fetch indices info and latest price*
 
@@ -237,11 +238,11 @@ Example: https://sandbox.contractmarketcap.com/v1/public/fx/ZAR
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/indices
+Example: https://sandbox.contractmarketcap.com/v1/data/indices
 
 
 
-#### /v1/public/indices/symbols
+#### /v1/data/indices/symbols
 
 *Coming soon. Fetch all indices symbols - unique, validate and  full-specified indices info*
 
@@ -259,11 +260,11 @@ Example: https://sandbox.contractmarketcap.com/v1/public/indices
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/indices/symbols 
+Example: https://sandbox.contractmarketcap.com/v1/data/indices/symbols 
 
 
 
-#### /v1/public/indices/<excode>
+#### /v1/data/indices/<excode>
 
 *Fetch indices info from specify exchange (using unique exchange code)*
 
@@ -316,13 +317,13 @@ Example: https://sandbox.contractmarketcap.com/v1/public/indices/symbols
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/indices/binancedm
+Example: https://sandbox.contractmarketcap.com/v1/data/indices/binancedm
 
 
 
-#### /v1/public/index/<symbol>
+#### /v1/data/index/<symbol>
 
-*Fetch one index data (using unique index symbol. All available symbols see at  /v1/public/indices/symbols )*
+*Fetch one index data (using unique index symbol. All available symbols see at  /v1/data/indices/symbols )*
 
 ```javascript
 {
@@ -364,11 +365,11 @@ Example: https://sandbox.contractmarketcap.com/v1/public/indices/binancedm
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/index/FTX:BTCUSDINDEX
+Example: https://sandbox.contractmarketcap.com/v1/data/index/FTX:BTCUSDINDEX
 
-#### /v1/public/index/<symbol>/history
+#### /v1/data/index/<symbol>/history
 
-*Fetch index value history (using unique index symbol. All available symbols see at  /v1/public/indices/symbols )*
+*Fetch index value history (using unique index symbol. All available symbols see at  /v1/data/indices/symbols )*
 
 At now, returns up to 500 latest values. K-lines and full-range historical values are coming.
 
@@ -395,7 +396,7 @@ At now, returns up to 500 latest values. K-lines and full-range historical value
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/index/FTX:BTCUSDINDEX/history
+Example: https://sandbox.contractmarketcap.com/v1/data/index/FTX:BTCUSDINDEX/history
 
 
 
@@ -405,7 +406,7 @@ Note. Only active (connecting to our platform) exchanges or CFD brokers are pres
 
 
 
-#### /v1/public/exchanges
+#### /v1/data/exchanges
 
 *Fetch global info about active (connected) exchanges*
 
@@ -452,11 +453,11 @@ Note. Only active (connecting to our platform) exchanges or CFD brokers are pres
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/exchanges
+Example: https://sandbox.contractmarketcap.com/v1/data/exchanges
 
 
 
-#### /v1/public/exchange/<excode>
+#### /v1/data/exchange/<excode>
 
 *Fetch global info about specify exchange*
 
@@ -511,21 +512,21 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchanges
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex
+Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex
 
 
 
-#### /v1/public/exchange/<excode>/info
+#### /v1/data/exchange/<excode>/info
 
 *Fetch global info about specify exchange*
 
-**Note**: Now are identical as a **/v1/public/exchange/<excode>**
+**Note**: Now are identical as a **/v1/data/exchange/<excode>**
 
-Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/info
+Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/info
 
 
 
-#### /v1/public/exchange/<excode>/contracts
+#### /v1/data/exchange/<excode>/contracts
 
 *Fetch all contract info  from specify exchange*
 
@@ -572,21 +573,21 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/info
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/contracts
+Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/contracts
 
 
 
-#### /v1/public/exchange/<excode>/indices
+#### /v1/data/exchange/<excode>/indices
 
 *Fetch exchange indices info*
 
-**Note**: Now are identical as a **/v1/public/<excode>/indices**
+**Note**: Now are identical as a **/v1/data/<excode>/indices**
 
-Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/indices
+Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/indices
 
 
 
-#### /v1/public/exchange/<excode>/stats
+#### /v1/data/exchange/<excode>/stats
 
 *Fetch stats info about specify exchange*
 
@@ -623,11 +624,11 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/indices
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/stats
+Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/stats
 
 
 
-#### /v1/public/exchange/<excode>/history
+#### /v1/data/exchange/<excode>/history
 
 *Fetch stats history (with 5 min interval) info about specify exchange*
 
@@ -658,19 +659,19 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/stats
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/history
+Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/history
 
 **Coming soon**: *at a future release, we are added <excode>/kline endpoint with UDF (TradingView) data for charts.*
 
 
 
-#### /v1/public/exchange/<excode>/reports
+#### /v1/data/exchange/<excode>/reports
 
 *Coming soon*
 
 
 
-#### /v1/public/exchange/<excode>/news
+#### /v1/data/exchange/<excode>/news
 
 *Coming soon*
 
@@ -682,11 +683,11 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/history
 
 
 
-#### /v1/public/contracts
+#### /v1/data/contracts
 
 *All contracts specifications*
 
-**Note**: Endpoint returns ALL of registered contracts, traded and expired. A lot of data (500+ Kb)!  If you need only active contracts, please, use /contracts/traded. 
+**Note**: Endpoint returns ALL of registered contracts, traded and expired. A lot of data (500+ Kb)!  If you need only active contracts, please, use **/contracts/traded** endpoint. 
 
 ```javascript
 {
@@ -733,13 +734,13 @@ Example: https://sandbox.contractmarketcap.com/v1/public/exchange/bitmex/history
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contracts
+Example: https://sandbox.contractmarketcap.com/v1/data/contracts
 
 
 
-#### /v1/public/contracts/traded
+#### /v1/data/contracts/traded
 
-*All currently traded contracts*. All fields identical to /contracts endpoint
+*All currently traded contracts*. All fields identical to **/contracts** endpoint
 
 ```javascript
 {
@@ -767,59 +768,59 @@ Example: https://sandbox.contractmarketcap.com/v1/public/contracts
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contracts/traded
+Example: https://sandbox.contractmarketcap.com/v1/data/contracts/traded
 
 
 
-#### /v1/public/contracts/expired
+#### /v1/data/contracts/expired
 
 *All currently expired contracts*. Data fields are identical to **/contracts** endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contracts/expired 
+Example: https://sandbox.contractmarketcap.com/v1/data/contracts/expired 
 
 
 
-#### /v1/public/contracts/perpetual
+#### /v1/data/contracts/perpetual
 
 *All perpetual (without expiration date) contracts*. Data fields are identical to **/contracts** endpoint
 
 Note: Not of all perpetual contracts are traded! 
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contracts/perpetual
+Example: https://sandbox.contractmarketcap.com/v1/data/contracts/perpetual
 
 
 
-#### /v1/public/contracts/tod
+#### /v1/data/contracts/tod
 
 *All contract, expired TODAY*. Data fields are identical to **/contracts** endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contracts/tod
+Example: https://sandbox.contractmarketcap.com/v1/data/contracts/tod
 
 
 
-#### /v1/public/contracts/tom
+#### /v1/data/contracts/tom
 
 *All contract, expired TOMORROW*. Data fields are identical to **/contracts** endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contracts/tom
+Example: https://sandbox.contractmarketcap.com/v1/data/contracts/tom
 
 
 
-#### /v1/public/contracts/<excode>
+#### /v1/data/contracts/<excode>
 
 *All contract by specify exchange*. Data fields are identical to **/contracts** endpoint
 
 **Note**: Returns all contracts, not only traded now. 
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contracts/huobidm
+Example: https://sandbox.contractmarketcap.com/v1/data/contracts/huobidm
 
 
 
-#### /v1/public/contract/<id>
+#### /v1/data/contract/<id>
 
 *Fetch info about one contract*. Data fields are identical to **/contracts** endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/contract/1797
+Example: https://sandbox.contractmarketcap.com/v1/data/contract/1797
 
 
 
@@ -833,11 +834,11 @@ Contact us for more info: raiden@contractmarketcap.com
 
 
 
-#### /v1/public/marketdata/summary
+#### /v1/data/marketdata/summary
 
 *All latest quotes by whole market*. Only traded now contracts are displayed.
 
-Note: Most of fields identical to /v1/public/contracts endpoint. 
+Note: Most of fields identical to /v1/data/contracts endpoint. 
 
 ```javascript
 {
@@ -886,63 +887,63 @@ Note: Most of fields identical to /v1/public/contracts endpoint.
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary
+Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/summary
 
 
 
-#### /v1/public/marketdata/summary/<period>
+#### /v1/data/marketdata/summary/<period>
 
 *All latest quotes by whole market*. Only traded at specify period are returned. 
 
 Period: **daily** (open day data, 00:00 by GMT), **weekly** and **monthly**.
 
-**Note**: All of fields identical to /v1/public/contracts endpoint.  
+**Note**: All of fields identical to /v1/data/contracts endpoint.  
 
 **Note**: For any un-applicable period returns latest data
 
-Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary/daily
+Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/summary/daily
 
-Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary/weekly
+Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/summary/weekly
 
-Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/summary/monthly
+Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/summary/monthly
 
 
 
-#### /v1/public/marketdata/exchange/<excode>
+#### /v1/data/marketdata/exchange/<excode>
 
-*Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
+*Latest quotes from one exchange*. Data fields are identical to **/marketdata/summary** endpoint
 
 Example: https://sandbox.contractmarketcap.com/v1/marketdata/exchange/bbx
 
 
 
-#### /v1/public/marketdata/contract/<contractid>
+#### /v1/data/marketdata/contract/<contractid>
 
-*Latest quotes from one contract, specify by ID*. Data fields are identical to /marketdata/summary endpoint
+*Latest quotes from one contract, specify by ID*. Data fields are identical to **/marketdata/summary** endpoint
 
-Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contract/1797
+Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/contract/1797
 
 
 
-#### /v1/public/marketdata/contract/<contractid>/history/eod
+#### /v1/data/marketdata/contract/<contractid>/history/eod
 
 *End-of-day history market snapshot from one contract, specify by ID*. 
 
-Data fields are identical to /marketdata/summary endpoint. Available for last 7 day.
+Data fields are identical to **/marketdata/summary** endpoint. Available for last 7 day.
 
-Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contract/1797/history/eod
+Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/contract/1797/history/eod
 
 
 
-#### /v1/public/marketdata/contracts
+#### /v1/data/marketdata/contracts
 
-*Latest quotes from one exchange*. Data fields are identical to /marketdata/summary endpoint
+*Latest quotes from one exchange*. Data fields are identical to **/marketdata/summary** endpoint
 
 **Note**: Contract IDs set by param ?cid=1,2,3. Max: 100 ids per request.
 
 **Note**: You may request latest price for any contract, traded or non-tradable now.
 
-Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contracts?ids=1797,1791,1792
+Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/contracts?ids=1797,1791,1792
 
 
 
@@ -952,7 +953,7 @@ Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contracts?id
 
 
 
-#### /v1/public/global/summary
+#### /v1/data/global/summary
 
 *Global metrics by whole market*. 
 
@@ -982,11 +983,11 @@ Example: https://sandbox.contractmarketcap.com/v1/public/marketdata/contracts?id
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/global/summary
+Example: https://sandbox.contractmarketcap.com/v1/data/global/summary
 
 
 
-#### /v1/public/global/summary/<assetsymbol> 
+#### /v1/data/global/summary/<assetsymbol> 
 
 *Global metrics by symbol derivative market*. 
 
@@ -1008,4 +1009,4 @@ Example: https://sandbox.contractmarketcap.com/v1/public/global/summary
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/global/summary/BTC
+Example: https://sandbox.contractmarketcap.com/v1/data/global/summary/BTC
