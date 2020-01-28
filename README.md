@@ -78,15 +78,24 @@ Example: https://sandbox.contractmarketcap.com/v1/public/system/status
 
 #### /v1/public/system/limits
 
-**Coming soon**. *Query information on current rate limits and/or API plan limits*
+*Query information on current rate limits and/or API plan limits*
+
+Only API endpoint usages stats at now.
+
+**HTTP Params**: ?hash=<md5 hash of your Auth token>
 
 ```javascript
 {
-	"data"	 : {}	//coming soon
+	"data"	 : {
+        "usages" : {
+            "/v1/data/fx": 2		//Endpoint and successful request counter
+        }
+        "total" : 1					//Total request with this auth key 
+    }	
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/system/limits 
+Example: https://sandbox.contractmarketcap.com/v1/public/system/limits?hash=8b5a16245f20af97932b4a655720c66b
 
 
 
