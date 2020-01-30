@@ -52,7 +52,7 @@ Universal response format (JSON):
 |  System  |            /v1/public/system/status            |             *Query information on system status*             |  NO  |
 |  System  |            /v1/public/system/limits            |    *Gate a rate limits and/or API plan limits and usages*    |  NO  |
 |    FX    |                  /v1/data/fx                   |         *FX quotes, used for internal calculations*          | YES  |
-|    FX    |              /v1/data/fx/<SYMBOL>              |       *Fetch FX quote for individual currency symbol.*       | YES  |
+|    FX    |           /v1/data/fx/**:*SYMBOL*:**           |       *Fetch FX quote for individual currency symbol.*       | YES  |
 |  Index   |                /v1/data/indices                |            *Fetch indices info and latest price*             | YES  |
 |  Index   |            /v1/data/indices/symbols            | *Coming soon. Fetch all indices symbols - unique, validate and  full-specified indices info* | YES  |
 |  Index   |           /v1/data/indices/<EXCODE>            | *Fetch indices info from specify exchange (using unique exchange code)* | YES  |
