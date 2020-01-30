@@ -75,7 +75,7 @@ Universal response format (JSON):
 | Contract |              /v1/data/contracts/tom               |               *All contract, expired TOMORROW*               | YES  |
 | Contract |          /v1/data/contracts/**%EXCODE%**          |              *All contract by specify exchange*              | YES  |
 | Contract |            /v1/data/contract/**%ID%**             |               *Fetch info about one contract*                | YES  |
-|    O     |            /v1/data/marketdata/summary            |             *All latest quotes by whole market*              | YES  |
+|  Quotes  |            /v1/data/marketdata/summary            |             *All latest quotes by whole market*              | YES  |
 |  Quotes  |     /v1/data/marketdata/summary/**%PERIOD%**      |        *All latest quotes, traded at specify period*         | YES  |
 |  Quotes  |     /v1/data/marketdata/exchange/**%EXCODE%**     |              *Latest quotes from one exchange*               | YES  |
 |  Quotes  |       /v1/data/marketdata/contract/**%ID%**       |       *Latest quotes from one contract, specify by ID*       | YES  |
