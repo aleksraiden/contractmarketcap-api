@@ -126,7 +126,7 @@ Example: https://sandbox.contractmarketcap.com/v1/public/system/status
 
 Only API endpoint usages stats at now.
 
-**HTTP Params**: ?hash=<md5 hash of your Auth token>
+**HTTP Params**: ?hash=%md5_hash_of_your_Auth_token%
 
 ```javascript
 {
