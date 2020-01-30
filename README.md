@@ -46,43 +46,43 @@ Universal response format (JSON):
 
 ## Endpoints list
 
-|  Group   |                    Endpoint                    |                         Description                          | Auth |
-| :------: | :--------------------------------------------: | :----------------------------------------------------------: | :--: |
-|  System  |             /v1/public/system/time             |                 *Get a current system time*                  |  NO  |
-|  System  |            /v1/public/system/status            |             *Query information on system status*             |  NO  |
-|  System  |            /v1/public/system/limits            |    *Gate a rate limits and/or API plan limits and usages*    |  NO  |
-|    FX    |                  /v1/data/fx                   |         *FX quotes, used for internal calculations*          | YES  |
-|    FX    |           /v1/data/fx/**:*SYMBOL*:**           |       *Fetch FX quote for individual currency symbol.*       | YES  |
-|  Index   |                /v1/data/indices                |            *Fetch indices info and latest price*             | YES  |
-|  Index   |            /v1/data/indices/symbols            | *Coming soon. Fetch all indices symbols - unique, validate and  full-specified indices info* | YES  |
-|  Index   |           /v1/data/indices/<EXCODE>            | *Fetch indices info from specify exchange (using unique exchange code)* | YES  |
-|  Index   |            /v1/data/index/<SYMBOL>             | *Fetch one index data (using unique index symbol. All available symbols see at*  **/indices/symbols** ) | YES  |
-|  Index   |        /v1/data/index/<SYMBOL>/history         | *Fetch index value history (using unique index symbol. All available symbols see at  **/indices/symbols** )* | YES  |
-| Exchange |               /v1/data/exchanges               |    *Fetch global info about active (connected) exchanges*    | YES  |
-| Exchange |           /v1/data/exchange/<EXCODE>           |          *Fetch global info about specify exchange*          | YES  |
-| Exchange |        /v1/data/exchange/<EXCODE>/info         |          *Fetch global info about specify exchange*          | YES  |
-| Exchange |      /v1/data/exchange/<EXCODE>/contracts      |       *Fetch all contract info  from specify exchange*       | YES  |
-| Exchange |       /v1/data/exchange/<EXCODE>/indices       |                *Fetch exchange indices info*                 | YES  |
-| Exchange |        /v1/data/exchange/<EXCODE>/stats        |          *Fetch stats info about specify exchange*           | YES  |
-| Exchange |       /v1/data/exchange/<EXCODE>/history       |      *Fetch stats history info about specify exchange*       | YES  |
-| Exchange |       /v1/data/exchange/<EXCODE>/reports       |                        *Coming soon*                         | YES  |
-| Exchange |        /v1/data/exchange/<EXCODE>/news         |                        *Coming soon*                         | YES  |
-| Contract |               /v1/data/contracts               |                *All contracts specifications*                | YES  |
-| Contract |           /v1/data/contracts/traded            |               *All currently traded contracts*               | YES  |
-| Contract |           /v1/data/contracts/expired           |              *All currently expired contracts*               | YES  |
-| Contract |          /v1/data/contracts/perpetual          |     *All perpetual (without expiration date) contracts*      | YES  |
-| Contract |             /v1/data/contracts/tod             |                *All contract, expired TODAY*                 | YES  |
-| Contract |             /v1/data/contracts/tom             |               *All contract, expired TOMORROW*               | YES  |
-| Contract |          /v1/data/contracts/<EXCODE>           |              *All contract by specify exchange*              | YES  |
-| Contract |             /v1/data/contract/<ID>             |               *Fetch info about one contract*                | YES  |
-|    O     |          /v1/data/marketdata/summary           |             *All latest quotes by whole market*              | YES  |
-|  Quotes  |      /v1/data/marketdata/summary/<PERIOD>      |        *All latest quotes, traded at specify period*         | YES  |
-|  Quotes  |     /v1/data/marketdata/exchange/<EXCODE>      |              *Latest quotes from one exchange*               | YES  |
-|  Quotes  |       /v1/data/marketdata/contract/<CID>       |       *Latest quotes from one contract, specify by ID*       | YES  |
-|  Quotes  | /v1/data/marketdata/contract/<CID>/history/eod | *End-of-day history market snapshot from one contract, specify by ID*. | YES  |
-|  Quotes  |         /v1/data/marketdata/contracts          |            *Latest quotes for specify contracts*             | YES  |
-|  Global  |            /v1/data/global/summary             |               *Global metrics by whole market*               | YES  |
-|  Global  |        /v1/data/global/summary/<SYMBOL>        |                  *Global metrics by symbol*                  | YES  |
+|  Group   |                      Endpoint                      |                         Description                          | Auth |
+| :------: | :------------------------------------------------: | :----------------------------------------------------------: | :--: |
+|  System  |               /v1/public/system/time               |                 *Get a current system time*                  |  NO  |
+|  System  |              /v1/public/system/status              |             *Query information on system status*             |  NO  |
+|  System  |              /v1/public/system/limits              |    *Gate a rate limits and/or API plan limits and usages*    |  NO  |
+|    FX    |                    /v1/data/fx                     |         *FX quotes, used for internal calculations*          | YES  |
+|    FX    |              /v1/data/fx/**%SYMBOL%**              |       *Fetch FX quote for individual currency symbol.*       | YES  |
+|  Index   |                  /v1/data/indices                  |            *Fetch indices info and latest price*             | YES  |
+|  Index   |              /v1/data/indices/symbols              | *Coming soon. Fetch all indices symbols - unique, validate and  full-specified indices info* | YES  |
+|  Index   |           /v1/data/indices/**%EXCODE%**            | *Fetch indices info from specify exchange (using unique exchange code)* | YES  |
+|  Index   |            /v1/data/index/**%SYMBOL%**             | *Fetch one index data (using unique index symbol. All available symbols see at*  **/indices/symbols** ) | YES  |
+|  Index   |        /v1/data/index/**%SYMBOL%**/history         | *Fetch index value history (using unique index symbol. All available symbols see at  **/indices/symbols** )* | YES  |
+| Exchange |                 /v1/data/exchanges                 |    *Fetch global info about active (connected) exchanges*    | YES  |
+| Exchange |           /v1/data/exchange/**%EXCODE%**           |          *Fetch global info about specify exchange*          | YES  |
+| Exchange |        /v1/data/exchange/**%EXCODE%**/info         |          *Fetch global info about specify exchange*          | YES  |
+| Exchange |      /v1/data/exchange/**%EXCODE%**/contracts      |       *Fetch all contract info  from specify exchange*       | YES  |
+| Exchange |       /v1/data/exchange/**%EXCODE%**/indices       |                *Fetch exchange indices info*                 | YES  |
+| Exchange |        /v1/data/exchange/**%EXCODE%**/stats        |          *Fetch stats info about specify exchange*           | YES  |
+| Exchange |       /v1/data/exchange/**%EXCODE%**/history       |      *Fetch stats history info about specify exchange*       | YES  |
+| Exchange |       /v1/data/exchange/**%EXCODE%**/reports       |                        *Coming soon*                         | YES  |
+| Exchange |        /v1/data/exchange/**%EXCODE%**/news         |                        *Coming soon*                         | YES  |
+| Contract |                 /v1/data/contracts                 |                *All contracts specifications*                | YES  |
+| Contract |             /v1/data/contracts/traded              |               *All currently traded contracts*               | YES  |
+| Contract |             /v1/data/contracts/expired             |              *All currently expired contracts*               | YES  |
+| Contract |            /v1/data/contracts/perpetual            |     *All perpetual (without expiration date) contracts*      | YES  |
+| Contract |               /v1/data/contracts/tod               |                *All contract, expired TODAY*                 | YES  |
+| Contract |               /v1/data/contracts/tom               |               *All contract, expired TOMORROW*               | YES  |
+| Contract |          /v1/data/contracts/**%EXCODE%**           |              *All contract by specify exchange*              | YES  |
+| Contract |             /v1/data/contract/**%ID%**             |               *Fetch info about one contract*                | YES  |
+|    O     |            /v1/data/marketdata/summary             |             *All latest quotes by whole market*              | YES  |
+|  Quotes  |      /v1/data/marketdata/summary/**%PERIOD%**      |        *All latest quotes, traded at specify period*         | YES  |
+|  Quotes  |     /v1/data/marketdata/exchange/**%EXCODE%**      |              *Latest quotes from one exchange*               | YES  |
+|  Quotes  |       /v1/data/marketdata/contract/**%CID%**       |       *Latest quotes from one contract, specify by ID*       | YES  |
+|  Quotes  | /v1/data/marketdata/contract/**%CID%**/history/eod | *End-of-day history market snapshot from one contract, specify by ID*. | YES  |
+|  Quotes  |           /v1/data/marketdata/contracts            |            *Latest quotes for specify contracts*             | YES  |
+|  Global  |              /v1/data/global/summary               |               *Global metrics by whole market*               | YES  |
+|  Global  |        /v1/data/global/summary/**%SYMBOL%**        |                  *Global metrics by symbol*                  | YES  |
 
 
 
