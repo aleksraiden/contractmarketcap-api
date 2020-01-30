@@ -44,6 +44,50 @@ Universal response format (JSON):
 
 
 
+## Endpoints list
+
+|  Group   |                    Endpoint                    |                         Description                          | Auth |
+| :------: | :--------------------------------------------: | :----------------------------------------------------------: | :--: |
+|  System  |             /v1/public/system/time             |                 *Get a current system time*                  |  NO  |
+|  System  |            /v1/public/system/status            |             *Query information on system status*             |  NO  |
+|  System  |            /v1/public/system/limits            |    *Gate a rate limits and/or API plan limits and usages*    |  NO  |
+|    FX    |                  /v1/data/fx                   |         *FX quotes, used for internal calculations*          | YES  |
+|    FX    |              /v1/data/fx/<SYMBOL>              |       *Fetch FX quote for individual currency symbol.*       | YES  |
+|  Index   |                /v1/data/indices                |            *Fetch indices info and latest price*             | YES  |
+|  Index   |            /v1/data/indices/symbols            | *Coming soon. Fetch all indices symbols - unique, validate and  full-specified indices info* | YES  |
+|  Index   |           /v1/data/indices/<EXCODE>            | *Fetch indices info from specify exchange (using unique exchange code)* | YES  |
+|  Index   |            /v1/data/index/<SYMBOL>             | *Fetch one index data (using unique index symbol. All available symbols see at*  **/indices/symbols** ) | YES  |
+|  Index   |        /v1/data/index/<SYMBOL>/history         | *Fetch index value history (using unique index symbol. All available symbols see at  **/indices/symbols** )* | YES  |
+| Exchange |               /v1/data/exchanges               |    *Fetch global info about active (connected) exchanges*    | YES  |
+| Exchange |           /v1/data/exchange/<EXCODE>           |          *Fetch global info about specify exchange*          | YES  |
+| Exchange |        /v1/data/exchange/<EXCODE>/info         |          *Fetch global info about specify exchange*          | YES  |
+| Exchange |      /v1/data/exchange/<EXCODE>/contracts      |       *Fetch all contract info  from specify exchange*       | YES  |
+| Exchange |       /v1/data/exchange/<EXCODE>/indices       |                *Fetch exchange indices info*                 | YES  |
+| Exchange |        /v1/data/exchange/<EXCODE>/stats        |          *Fetch stats info about specify exchange*           | YES  |
+| Exchange |       /v1/data/exchange/<EXCODE>/history       |      *Fetch stats history info about specify exchange*       | YES  |
+| Exchange |       /v1/data/exchange/<EXCODE>/reports       |                        *Coming soon*                         | YES  |
+| Exchange |        /v1/data/exchange/<EXCODE>/news         |                        *Coming soon*                         | YES  |
+| Contract |               /v1/data/contracts               |                *All contracts specifications*                | YES  |
+| Contract |           /v1/data/contracts/traded            |               *All currently traded contracts*               | YES  |
+| Contract |           /v1/data/contracts/expired           |              *All currently expired contracts*               | YES  |
+| Contract |          /v1/data/contracts/perpetual          |     *All perpetual (without expiration date) contracts*      | YES  |
+| Contract |             /v1/data/contracts/tod             |                *All contract, expired TODAY*                 | YES  |
+| Contract |             /v1/data/contracts/tom             |               *All contract, expired TOMORROW*               | YES  |
+| Contract |          /v1/data/contracts/<EXCODE>           |              *All contract by specify exchange*              | YES  |
+| Contract |             /v1/data/contract/<ID>             |               *Fetch info about one contract*                | YES  |
+|    O     |          /v1/data/marketdata/summary           |             *All latest quotes by whole market*              | YES  |
+|  Quotes  |      /v1/data/marketdata/summary/<PERIOD>      |        *All latest quotes, traded at specify period*         | YES  |
+|  Quotes  |     /v1/data/marketdata/exchange/<EXCODE>      |              *Latest quotes from one exchange*               | YES  |
+|  Quotes  |       /v1/data/marketdata/contract/<CID>       |       *Latest quotes from one contract, specify by ID*       | YES  |
+|  Quotes  | /v1/data/marketdata/contract/<CID>/history/eod | *End-of-day history market snapshot from one contract, specify by ID*. | YES  |
+|  Quotes  |         /v1/data/marketdata/contracts          |            *Latest quotes for specify contracts*             | YES  |
+|  Global  |            /v1/data/global/summary             |               *Global metrics by whole market*               | YES  |
+|  Global  |        /v1/data/global/summary/<SYMBOL>        |                  *Global metrics by symbol*                  | YES  |
+
+
+
+
+
 ## System endpoints
 
 #### /v1/public/system/time
@@ -109,7 +153,7 @@ If you are interest other currency - feel free co contact us: raiden@contractmar
 
 #### /v1/data/fx
 
-*Fetch Fx quotes, used for internal calculations.*
+*Fetch FX quotes, used for internal calculations.*
 
 Supports fiat currency, such as EUR, RUB, CNY and crypto, e.g. BTC, ETH.
 
@@ -158,7 +202,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/fx
 
 #### /v1/data/fx/<SYMBOL>
 
-*Fetch Fx quote for individual currency symbol.*
+*Fetch FX quote for individual currency symbol.*
 
 Supports fiat currency, such as EUR, RUB, CNY and crypto, e.g. BTC, ETH.
 
@@ -273,7 +317,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/indices/symbols
 
 
 
-#### /v1/data/indices/<excode>
+#### /v1/data/indices/<EXCODE>
 
 *Fetch indices info from specify exchange (using unique exchange code)*
 
@@ -330,9 +374,9 @@ Example: https://sandbox.contractmarketcap.com/v1/data/indices/binancedm
 
 
 
-#### /v1/data/index/<symbol>
+#### /v1/data/index/<SYMBOL>
 
-*Fetch one index data (using unique index symbol. All available symbols see at  /v1/data/indices/symbols )*
+*Fetch one index data (using unique index symbol. All available symbols see at  **/v1/data/indices/symbols** )*
 
 ```javascript
 {
@@ -376,9 +420,9 @@ Example: https://sandbox.contractmarketcap.com/v1/data/indices/binancedm
 
 Example: https://sandbox.contractmarketcap.com/v1/data/index/FTX:BTCUSDINDEX
 
-#### /v1/data/index/<symbol>/history
+#### /v1/data/index/<SYMBOL>/history
 
-*Fetch index value history (using unique index symbol. All available symbols see at  /v1/data/indices/symbols )*
+*Fetch index value history (using unique index symbol. All available symbols see at  **/v1/data/indices/symbols** )*
 
 At now, returns up to 500 latest values. K-lines and full-range historical values are coming.
 
@@ -466,7 +510,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/exchanges
 
 
 
-#### /v1/data/exchange/<excode>
+#### /v1/data/exchange/<EXCODE>
 
 *Fetch global info about specify exchange*
 
@@ -525,7 +569,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex
 
 
 
-#### /v1/data/exchange/<excode>/info
+#### /v1/data/exchange/<EXCODE>/info
 
 *Fetch global info about specify exchange*
 
@@ -535,7 +579,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/info
 
 
 
-#### /v1/data/exchange/<excode>/contracts
+#### /v1/data/exchange/<EXCODE>/contracts
 
 *Fetch all contract info  from specify exchange*
 
@@ -586,7 +630,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/contracts
 
 
 
-#### /v1/data/exchange/<excode>/indices
+#### /v1/data/exchange/<EXCODE>/indices
 
 *Fetch exchange indices info*
 
@@ -596,7 +640,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/indices
 
 
 
-#### /v1/data/exchange/<excode>/stats
+#### /v1/data/exchange/<EXCODE>/stats
 
 *Fetch stats info about specify exchange*
 
@@ -637,7 +681,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/stats
 
 
 
-#### /v1/data/exchange/<excode>/history
+#### /v1/data/exchange/<EXCODE>/history
 
 *Fetch stats history (with 5 min interval) info about specify exchange*
 
@@ -674,13 +718,13 @@ Example: https://sandbox.contractmarketcap.com/v1/data/exchange/bitmex/history
 
 
 
-#### /v1/data/exchange/<excode>/reports
+#### /v1/data/exchange/<EXCODE>/reports
 
 *Coming soon*
 
 
 
-#### /v1/data/exchange/<excode>/news
+#### /v1/data/exchange/<EXCODE>/news
 
 *Coming soon*
 
@@ -815,7 +859,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/contracts/tom
 
 
 
-#### /v1/data/contracts/<excode>
+#### /v1/data/contracts/<EXCODE>
 
 *All contract by specify exchange*. Data fields are identical to **/contracts** endpoint
 
@@ -825,7 +869,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/contracts/huobidm
 
 
 
-#### /v1/data/contract/<id>
+#### /v1/data/contract/<ID>
 
 *Fetch info about one contract*. Data fields are identical to **/contracts** endpoint
 
@@ -900,9 +944,9 @@ Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/summary
 
 
 
-#### /v1/data/marketdata/summary/<period>
+#### /v1/data/marketdata/summary/<PERIOD>
 
-*All latest quotes by whole market*. Only traded at specify period are returned. 
+*All latest quotes by whole market, traded at specify period are returned.* 
 
 Period: **daily** (open day data, 00:00 by GMT), **weekly** and **monthly**.
 
@@ -918,7 +962,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/summary/monthl
 
 
 
-#### /v1/data/marketdata/exchange/<excode>
+#### /v1/data/marketdata/exchange/<EXCODE>
 
 *Latest quotes from one exchange*. Data fields are identical to **/marketdata/summary** endpoint
 
@@ -926,7 +970,7 @@ Example: https://sandbox.contractmarketcap.com/v1/marketdata/exchange/bbx
 
 
 
-#### /v1/data/marketdata/contract/<contractid>
+#### /v1/data/marketdata/contract/<CID>
 
 *Latest quotes from one contract, specify by ID*. Data fields are identical to **/marketdata/summary** endpoint
 
@@ -934,7 +978,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/contract/1797
 
 
 
-#### /v1/data/marketdata/contract/<contractid>/history/eod
+#### /v1/data/marketdata/contract/<CID>/history/eod
 
 *End-of-day history market snapshot from one contract, specify by ID*. 
 
@@ -946,7 +990,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/marketdata/contract/1797/
 
 #### /v1/data/marketdata/contracts
 
-*Latest quotes from one exchange*. Data fields are identical to **/marketdata/summary** endpoint
+*Latest quotes for specify contracts*. Data fields are identical to **/marketdata/summary** endpoint
 
 **Note**: Contract IDs set by param ?cid=1,2,3. Max: 100 ids per request.
 
@@ -996,9 +1040,9 @@ Example: https://sandbox.contractmarketcap.com/v1/data/global/summary
 
 
 
-#### /v1/data/global/summary/<assetsymbol> 
+#### /v1/data/global/summary/<SYMBOL> 
 
-*Global metrics by symbol derivative market*. 
+*Global metrics by symbol*. 
 
 **Note**: some of global metrics provided by third-party contributors - CoinMarketCap and other.
 
