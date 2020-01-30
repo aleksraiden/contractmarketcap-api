@@ -112,7 +112,7 @@ Example: https://sandbox.contractmarketcap.com/v1/public/system/time
 {
 	"status" : true|false,
 	"error"  : null|"Invalid backend connection" 	//or any string with error
-	"data"	 : {} 									//no data block for this request
+	"data"	 : {} 	//no data block for this request
 }
 ```
 
@@ -134,7 +134,7 @@ Only API endpoint usages stats at now.
         "usages" : {
             "/v1/data/fx": 2		//Endpoint and successful request counter
         }
-        "total" : 1					//Total request with this auth key 
+        "total" : 1		//Total request with this auth key 
     }	
 }
 ```
@@ -245,8 +245,8 @@ Example: https://sandbox.contractmarketcap.com/v1/data/fx/ZAR
         ".ETHBON2H" : {					
             excode: "bitmex",			// Unique id of exchange 
             index_name: ".ETHBON2H",	// Name of index, in some cases non-unique
-            info: null,					// Reserved for future extend, Ignore it now
-            contracts: [ ],				// List of Contracts, associate with index
+            info: null,				// Reserved for future extend, Ignore it now
+            contracts: [ ],			// List of Contracts, associate with index
             constituents: null,			// Constituents of index. Coming soon.
             latest: 0.0003,				// Latest value
             updated_at: 1579874329		// Updated at, UNIX timestamp
@@ -805,7 +805,7 @@ Example: https://sandbox.contractmarketcap.com/v1/data/contracts
             origital_id: "",			//If provide, internal exchange id of contract
             contract_type: "FUTURES",	//Type of contract (FUTURES, SWAP, CFD, ETP)
             asset_type: "COIN",			//Type of base asset: COIN, TOKEN, INDEX etc.
-            expiration_date: "",		//Date of contract expiration (empty for perpetual or d/M/Y, eg. 21/Mar/2020)
+            expiration_date: "", //Date of contract expiration (empty or d/M/Y, eg. 21/Mar/2020)
             settlement_type: "CASH",	//Type of settlement (CASH, DELIVERY)
             nominated_type: "VANILLA",	//Type of nominal (VANILLA, INVERSE, QUANTO)
             index_name: "FTX ALGO Index", //Underlaying index name
