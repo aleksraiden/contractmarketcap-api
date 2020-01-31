@@ -23,7 +23,6 @@ Official API docs and examples for ContractMarketCap site. Visit to: https://con
   - http header with name X-CMC-KEY (best practice) 
   - http request param, named "**x-cmc-key**"
 - Get your key (or revoke previous) at client area (https://clients.contractmarketcap.com, *coming soon*) or request vie e-mail: apikey@contractmarketcap.com 
-- At TEST Auth token can be any non-empty string, e.g. "test" or "<your_company_domain>"
 - **Endpoints, started with /v1/public/ - are FREE without any Auth key**
 - **Keep your key private and safe**!  
 
@@ -126,7 +125,7 @@ Example: https://sandbox.contractmarketcap.com/v1/public/system/status
 
 Only API endpoint usages stats at now.
 
-**HTTP Params**: ?hash=%md5_hash_of_your_Auth_token%
+**HTTP Params**: ?x-cmc-key=%YOUR_AUTH_KEY%
 
 ```javascript
 {
@@ -139,7 +138,7 @@ Only API endpoint usages stats at now.
 }
 ```
 
-Example: https://sandbox.contractmarketcap.com/v1/public/system/limits?hash=8b5a16245f20af97932b4a655720c66b
+Example: https://sandbox.contractmarketcap.com/v1/public/system/limits?x-cmc-key=8b5a16245f20af97932b4a655720c66b
 
 
 
