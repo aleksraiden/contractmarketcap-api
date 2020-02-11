@@ -1,6 +1,6 @@
-# contractmarketcap-api
+# [Beta version] ContractMarketCap REST API
+We are crypto derivative market data provider. 55 exchanges, 500+ traded contracts, 100% market coverage.
 Official API docs and examples for ContractMarketCap site. Visit to: https://contractmarketcap.com
-
 
 
 ## URI
