@@ -8,7 +8,7 @@ Official API docs and examples for ContractMarketCap site. Visit to: https://con
 
 - All endpoints use HTTPS scheme
 - **Test** integration: https://sandbox.contractmarketcap.com 
-- **Prod**: https://api.contractmarketcap.com  (or individual endpoint at your location: api-us, api-eu, api-sg etc., *coming soon*)
+- **Prod [NOT AVAILABLE NOW]**: https://api.contractmarketcap.com  (or individual endpoint at your location: api-us, api-eu, api-sg etc., *coming soon*)
 - All endpoints return content with mime-type: application/json with HTTP Status code 200
 - Use version at URI path as "v1" for all request
 - Non-200 OK HTTP status code indicate Error at our server side.
